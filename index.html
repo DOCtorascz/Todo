@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/style.css">
+  <title>Document</title>
+</head>
+<body>
+  <main class="ToDo">
+    <div class="container">
+      <div class="ToDo__priority">
+        <div class="ToDo_pr-high">
+          <h4 class="pr-name">HIGH</h4>
+          <div class="ToDo__add-task">
+            <form class="ToDo__form" action="#" type="submit">
+              <input class="ToDo__add-text1 add-text" type="text" name="listToDo"  placeholder="Добавить важных дел">
+              <button class="ToDo__add1 add"><img src="img/plus.svg" alt="plus"></button>
+            </form>
+          </div>
+          <ul class="listUp">
+          </ul>
+        </div>
+        <div class="ToDo_pr-low">
+          <h4 class="pr-name bott">LOW</h4>
+          <div class="ToDo__add-task">
+            <form class="ToDo__form" action="#" type="submit" onsubmit="return false">
+              <input class="ToDo__add-text2 add-text" type="text" name="listToDo" placeholder="Добавить">
+              <button class="ToDo__add2 add"><img src="img/plus.svg" alt="plus"></button>
+            </form>
+          </div>
+          <ul class="listDown">
+          </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/main.js" type="module"></script>
+</body>
+</html>

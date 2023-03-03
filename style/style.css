@@ -1,0 +1,77 @@
+*{
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+*,*:before,*:after{
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body{
+  font-family: Roboto, sans-serif;
+}
+
+.container{
+  max-width: 476px;
+  padding: 25px 8px;
+}
+
+.pr-name{
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.ToDo__form{
+  display: flex;
+  align-items: center;
+}
+
+.add-text{
+  border: 1px solid #998899;
+  border-radius: 5px;
+  padding: 12px 47px 12px 12px;
+  font-size: 18px;
+  line-height: 21px;
+  width: 100%;
+  font-family:inherit;
+  position: relative;
+}
+
+.add{
+  background: none;
+  font-size: 30px;
+  color: #998899;
+  cursor: pointer;
+  position: absolute;
+  left: 429px;
+}
+
+.ToDo__inner{
+  border: 1px solid #998899;
+  border-radius: 5px;
+  padding: 12px;
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.ToDo__check{
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+.ToDo__task{
+  cursor: pointer;
+}
+
+.bott{
+  margin-top: 12px;
+}
+
+.ToDo__add-del{
+  background: none;
+  cursor: pointer;
+}
