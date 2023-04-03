@@ -1,65 +1,50 @@
-import {renderLow, deleteTask} from './TaskLow.js'
-import {variables, taskVariabl} from './variable.js'
+export {removeDom, render}
+import { taskHight, taskLow } from "./variables.js"
+import {arrayMap, addTaskHigth, addTaskLow} from "./addTask.js"
+import { list } from "./createElement.js"
+import { deleteTask } from "./deleteTask.js"
+import { changeStatus } from "./changeStatus.js"
 
-const task = [ 
-];
-
-function addTaskHigh() {
-  if (task.length != 0) {
-    let result = taskVariabl()
-    let num = 0
-    task.forEach(item => {
-      let namesResult = result.NEWTASKTEXT.innerHTML = item.name
-      variables.LISTUP.insertAdjacentHTML('beforeend', 
-      `<li class="ToDo__inner" id="List${num++}">
-        <label class="lb-flex">
-          <input type="radio" class="ToDo__check">
-          <span class="ToDo__task">${namesResult}</span>
-        </label>
-        <button class="ToDo__add-del" id="Bt${num++}">
-          <img class="todoImages" src="img/Delete.svg" id="Img${num++}">
-        </button>
-      </li>`)
-    })
-  } 
-}
-addTaskHigh()
-
-function newTask(nameTask, statusTask, prioritiTask) {
-  const obj = {name: nameTask, status: statusTask, priority: prioritiTask}
-  task.push(obj)
-  variables.TODOINPUT.value = ''
+function removeDom() {
+  while(taskHight.UP.firstChild) {
+    taskHight.UP.removeChild(taskHight.UP.lastChild)
+  }
+  while(taskLow.DOWN.firstChild) {
+    taskLow.DOWN.removeChild(taskLow.DOWN.lastChild)
+  }
 }
 
-function renderHigh() {
-  let result = taskVariabl()
-  newTask(variables.TODOINPUT.value)
+function render() { 
 
-  result.NEWTASK.classList.add('ToDo__inner')
-  result.NEWTASKINNER.classList.add('lb-flex')
-  result.NEWTASKRADIO.setAttribute('type', "radio")
-  result.NEWTASKRADIO.classList.add('ToDo__check')
-  result.NEWTASKTEXT.classList.add('ToDo__task')
-  result.TODOIMG.setAttribute('src', 'img/Delete.svg')
-  result.TODODEL.classList.add(`ToDo__add-del`)
-  result.NEWTASKTEXT.innerHTML = task[task.length - 1].name
-  variables.LISTUP.appendChild(result.NEWTASK)
-  result.NEWTASK.appendChild(result.NEWTASKINNER)
-  result.TODODEL.appendChild(result.TODOIMG)
-  result.NEWTASK.appendChild(result.TODODEL)
-  result.NEWTASKINNER.appendChild(result.NEWTASKRADIO)
-  result.NEWTASKINNER.appendChild(result.NEWTASKTEXT)
+  for (const char of arrayMap) {
+    const priority = char[0].status === 'Done'
+    const priorityHight = char[0].priority === 'Hight'
+    const priorityLow = char[0].priority === 'Low'
+    const timeArr = [char[0].time, char[0].completeStatus, char[0].newStatus]
 
-  function taskDelete() {
-    result.NEWTASK.remove()
-    result.NEWTASK.removeEventListener
-  } 
-  result.TODODEL.addEventListener('click', taskDelete)
+    if (priorityHight) {
+      if (priority) {
+        list(taskHight.UP, char[0].name, 'checked', 'true', ...timeArr)
+      } else {
+        list(taskHight.UP, char[0].name, 'check', 'false', ...timeArr)
+        taskHight.TASKNAME.value = ''
+      }
+    } else if (priorityLow) {
+      if (priority) {
+        list(taskLow.DOWN, char[0].name, 'checked', 'true', ...timeArr)
+      } else {
+        list(taskLow.DOWN, char[0].name, 'check', 'false', ...timeArr)
+        taskLow.TASKNAME.value = ''
+      }
+    }
+  }
 }
 
-variables.FORM.addEventListener('click', (event) => {
+taskHight.FORM.addEventListener('click', (event) => {
   event.preventDefault()
 })
 
-variables.TODOADD.addEventListener('click', renderHigh)
-variables.TODOADD2.addEventListener('click', renderLow)
+deleteTask()
+changeStatus()
+taskHight.ADD.addEventListener('click', addTaskHigth)
+taskLow.ADD.addEventListener('click', addTaskLow)
