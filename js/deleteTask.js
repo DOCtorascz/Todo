@@ -1,7 +1,7 @@
 export {deleteTask}
 import { taskHight, taskLow } from "./variables.js"
 import { arrayMap } from "./addTask.js"
-import { removeDom, render } from "./main.js"
+import { removeDom, render, removeRecurse } from "./main.js"
 
 function deleteTask() {
   taskHight.UP.addEventListener('click', (event) => {
@@ -14,8 +14,7 @@ function deleteTask() {
           break
         }
       }
-
-      removeDom()
+      removeRecurse(taskHight.UP.childNodes.length, taskLow.DOWN.childNodes.length)
       render()
     }
   })
@@ -29,8 +28,7 @@ function deleteTask() {
           break
         }
       }
-
-      removeDom()
+      removeRecurse(taskHight.UP.childNodes.length, taskLow.DOWN.childNodes.length)
       render()
     }
   })

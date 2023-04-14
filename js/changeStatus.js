@@ -1,11 +1,11 @@
 export {changeStatus}
 import { taskHight, taskLow } from "./variables.js"
 import { arrayMap, times } from "./addTask.js"
-import { render, removeDom } from "./main.js"
+import { render, removeDom, removeRecurse } from "./main.js"
 
 function changeStatus () {
   taskHight.UP.addEventListener('click', (event) => {
-    removeDom()
+    removeRecurse(taskHight.UP.childNodes.length, taskLow.DOWN.childNodes.length)
     if (event.target.classList.contains('ToDo__check')) {
       let textList = event.target.parentNode.parentNode.childNodes[0].textContent
 
@@ -28,7 +28,7 @@ function changeStatus () {
     render()
   })
   taskLow.DOWN.addEventListener('click', (event) => {
-    removeDom()
+    removeRecurse(taskHight.UP.childNodes.length, taskLow.DOWN.childNodes.length)
     if (event.target.classList.contains('ToDo__check')) {
       let textList = event.target.parentNode.parentNode.childNodes[0].textContent
           

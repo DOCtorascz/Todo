@@ -1,4 +1,4 @@
-export {removeDom, render}
+export {removeDom, render, removeRecurse}
 import { taskHight, taskLow } from "./variables.js"
 import {arrayMap, addTaskHigth, addTaskLow} from "./addTask.js"
 import { list } from "./createElement.js"
@@ -12,6 +12,21 @@ function removeDom() {
   while(taskLow.DOWN.firstChild) {
     taskLow.DOWN.removeChild(taskLow.DOWN.lastChild)
   }
+}
+
+function removeRecurse(step1, step2) {
+  console.log(step1)
+  if (step1 === 0 && step2 === 0) {
+    return
+  }
+
+  if (step1 > 0) {
+    taskHight.UP.removeChild(taskHight.UP.lastChild)
+  } else if (step2 > 0){
+    taskLow.DOWN.removeChild(taskLow.DOWN.lastChild)
+  }
+  
+  removeRecurse(taskHight.UP.childNodes.length, taskLow.DOWN.childNodes.length)
 }
 
 function render() { 
